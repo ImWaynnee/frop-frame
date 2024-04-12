@@ -23,7 +23,7 @@ const convertDateForDisplay = date => {
       return 'NIL';
     }
   
-    return format(date, 'do MMMM yyyy hh:mm aaa');
+    return format(new Date(`${date}Z`), 'do MMMM yyyy hh:mm aaa');
   };
 
 export { getDayStart, convertDateForDisplay };
