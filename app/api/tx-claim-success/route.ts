@@ -20,9 +20,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     return new NextResponse('Message not valid', { status: 500 });
   }
 
-  const todayDraw = getDayStart();
-  const canSettle = isBefore(usePersistentStore.getState().timePurchased, todayDraw);
-console.log(canSettle);
+  // TODO :: Check if win or lose
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
