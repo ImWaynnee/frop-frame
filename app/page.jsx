@@ -22,7 +22,7 @@ export const metadata = {
   description: 'Feeling lucky? Try for free options!',
   openGraph: {
     title: 'FROP',
-    description: 'Feelingn lucky? Try for free options!',
+    description: 'Feeling lucky? Try for free options!',
     images: [`${NEXT_PUBLIC_URL}/park-1.png`],
   },
   other: {

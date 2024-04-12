@@ -26,7 +26,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     console.error(e);
   }
 
-  usePersistentStore.getState().setStatus(1);
+  //usePersistentStore.getState().setStatus(1);
   // TODO :: Unlucky page, just spin again.
   return new NextResponse(
     getFrameHtmlResponse({
@@ -38,11 +38,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
       ],
       image: {
         src: `${NEXT_PUBLIC_URL}/park-1.png`,
-      },
-      state: {
-        page: state?.page + 1,
-        time: new Date().toISOString(),
-      },
+      }
     }),
   );
 }
