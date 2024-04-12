@@ -5,9 +5,11 @@ import { NEXT_PUBLIC_URL } from '../../config';
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const { isValid, message } = 
-    process.env.NODE_ENV === 'development' 
-        ? { isValid: true, message: {} }
-        : await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
+  process.env.NODE_ENV === 'development' 
+      ? { isValid: true, message: {} }
+      : await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
+
+  // TODO :: Roll for luck 50%.
 
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
@@ -23,36 +25,26 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     console.error(e);
   }
 
-  /**
-   * Use this code to redirect to a different page
-   */
-  if (message?.button === 3) {
-    return NextResponse.redirect(
-      'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
-      { status: 302 },
-    );
-  }
-
+  // TODO :: Unlucky page
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
         {
-          label: `State: ${state?.page || 0}`,
+          action: 'tx',
+          label: '🐻 Bearish',
+          target: `${NEXT_PUBLIC_URL}/api/tx`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
         },
         {
-          action: 'link',
-          label: 'OnchainKit',
-          target: 'https://onchainkit.xyz',
-        },
-        {
-          action: 'post_redirect',
-          label: 'Dog pictures',
+          action: 'tx',
+          label: '🐂 Bullish',
+          target: `${NEXT_PUBLIC_URL}/api/tx`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
         },
       ],
       image: {
         src: `${NEXT_PUBLIC_URL}/park-1.png`,
       },
-      postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
       state: {
         page: state?.page + 1,
         time: new Date().toISOString(),
