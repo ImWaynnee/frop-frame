@@ -32,8 +32,16 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     getFrameHtmlResponse({
       buttons: [
         {
-          label: 'Predict $DEGEN movment',
-          target: `${NEXT_PUBLIC_URL}/`,
+          action: 'tx',
+          label: '🐻 Bearish',
+          target: `${NEXT_PUBLIC_URL}/api/tx`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
+        },
+        {
+          action: 'tx',
+          label: '🐂 Bullish',
+          target: `${NEXT_PUBLIC_URL}/api/tx`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
         }
       ],
       image: {
