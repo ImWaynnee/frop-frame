@@ -8,6 +8,9 @@ Since its free, the user initially needs to pass a 'luck' check, otherwise he ha
 
 Each user should only have 1 free attempt per event.
 
+###
+
+WIP Smart Contract Link: https://basescan.org/address/0xe209EAb16795e17FED3f26280b20543A4a611441#code
 
 ## Original Authors
 
