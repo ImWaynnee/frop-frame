@@ -60,7 +60,7 @@ export default function Page() {
   console.log(metadata.other);
 
   // Enable to reset
-  //usePersistentStore.getState().setStatus(0);
+  usePersistentStore.getState().setStatus(userFlowEnum.INITIAL);
   const status = usePersistentStore.getState().status;
   console.log('Status: ', status);
 
