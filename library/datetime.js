@@ -1,4 +1,4 @@
-import {format, isValid} from 'date-fns';
+import {differenceInHours, differenceInMinutes, format, isValid} from 'date-fns';
 
 /**
  * Returns the true start date based on the game's reset timing.
@@ -22,8 +22,17 @@ const convertDateForDisplay = date => {
     if (date == null || !isValid(new Date(date))) {
       return 'NIL';
     }
+
+    const now = new Date();
+    now.setHours(now.getHours() - 24);
+
+    //const daysLeft = differenceInDays(date, now);
+    const hoursLeft = differenceInHours(date, now) % 24;
+    const minutesLeft = differenceInMinutes(date, now) % 60;
+    //const secondsLeft = differenceInSeconds(date, now) % 60;
+
   
-    return format(new Date(`${date}Z`), 'do MMMM yyyy hh:mm aaa');
+    return `${hoursLeft}h ${minutesLeft}m`;
   };
 
 export { getDayStart, convertDateForDisplay };

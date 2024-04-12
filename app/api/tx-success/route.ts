@@ -24,7 +24,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const canSettle = isBefore(usePersistentStore.getState().timePurchased, todayDraw);
 console.log(canSettle);
 
-const leadtoResultsPage = canSettle || process.env.NODE_ENV === 'development';
+const leadtoResultsPage = canSettle /*|| process.env.NODE_ENV === 'development'*/;
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: 
