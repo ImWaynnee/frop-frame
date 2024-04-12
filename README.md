@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'zizzamia.xyz',
     description: 'LFG',
-    images: [`${NEXT_PUBLIC_URL}/park-1.png`],
+    images: [`${NEXT_PUBLIC_URL}/wheel.jpg`],
   },
   other: {
     ...frameMetadata,
@@ -152,7 +152,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         },
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+        src: `${NEXT_PUBLIC_URL}/wheel.jpg`,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
     }),

@@ -23,7 +23,7 @@ export const metadata = {
   openGraph: {
     title: 'FROP',
     description: 'Feeling lucky? Try for free options!',
-    images: [`${NEXT_PUBLIC_URL}/park-1.png`],
+    images: [`${NEXT_PUBLIC_URL}/wheel.jpg`],
   },
   other: {
     ...frameMetadata,
@@ -67,7 +67,7 @@ export default function Page() {
       ...getButtons()
     ],
     image: {
-      src: `${NEXT_PUBLIC_URL}/park-3.png`,
+      src: `${NEXT_PUBLIC_URL}/wheel.jpg`,
       aspectRatio: '1:1',
     },
     postUrl: `${NEXT_PUBLIC_URL}/api/options-check?direction=test`,

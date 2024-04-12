@@ -33,33 +33,35 @@ async function getResponse(req) {
     getFrameHtmlResponse({
       buttons: process.env.NODE_ENV === 'development' ? 
       [
-        {
-          action: 'post',
-          label: '🐻 Bearish',
-          target: `${NEXT_PUBLIC_URL}/api/tx-success?direction=-1`,
-        },
+        
         {
           action: 'post',
           label: '🐂 Bullish',
           target: `${NEXT_PUBLIC_URL}/api/tx-success?direction=1`,
+        },
+        {
+          action: 'post',
+          label: '🐻 Bearish',
+          target: `${NEXT_PUBLIC_URL}/api/tx-success?direction=-1`,
         }
       ]
       : [
-        {
-          action: 'tx',
-          label: '🐻 Bearish',
-          target: `${NEXT_PUBLIC_URL}/api/tx?direction=-1`,
-          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success?direction=-1`,
-        },
+        
         {
           action: 'tx',
           label: '🐂 Bullish',
           target: `${NEXT_PUBLIC_URL}/api/tx?direction=1`,
           postUrl: `${NEXT_PUBLIC_URL}/api/tx-success?direction=1`,
+        },
+        {
+          action: 'tx',
+          label: '🐻 Bearish',
+          target: `${NEXT_PUBLIC_URL}/api/tx?direction=-1`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success?direction=-1`,
         }
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+        src: `${NEXT_PUBLIC_URL}/predict.jpg`,
       }
     }),
   );

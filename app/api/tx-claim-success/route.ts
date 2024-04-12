@@ -27,12 +27,12 @@ console.log(canSettle);
     getFrameHtmlResponse({
       buttons: [
         {
-          label: `Well done! Try again tomorrow`
+          label: `Well done! Come back again tomorrow!`
         }
       ]
       ,
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-4.png`,
+        src: `${NEXT_PUBLIC_URL}/winner.jpg`,
       },
     }),
   );

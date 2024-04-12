@@ -24,12 +24,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const canSettle = isBefore(usePersistentStore.getState().timePurchased, todayDraw);
 console.log(canSettle);
 
+const leadtoResultsPage = canSettle || process.env.NODE_ENV === 'development';
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: 
       process.env.NODE_ENV === 'development' ? 
       [
-        canSettle || process.env.NODE_ENV === 'development' ? {
+        leadtoResultsPage ? {
           action: 'post',
           label: 'Claim your winnings!',
           target: `${NEXT_PUBLIC_URL}/api/tx-claim-success`,
@@ -39,7 +40,7 @@ console.log(canSettle);
         }
       ]
       : [
-         canSettle ? {
+         leadtoResultsPage ? {
           action: 'tx',
           label: 'Claim your winnings!',
           target: `${NEXT_PUBLIC_URL}/api/tx-claim`,
@@ -51,7 +52,9 @@ console.log(canSettle);
       ]
       ,
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-4.png`,
+        src: leadtoResultsPage 
+        ? `${NEXT_PUBLIC_URL}/results-ready.jpg`
+        : `${NEXT_PUBLIC_URL}/results-wait.jpg`,
       },
     }),
   );
