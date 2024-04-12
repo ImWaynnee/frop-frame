@@ -1,12 +1,16 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import {userFlowEnum} from '../constants/enum';
+
 
 const usePersistentStore = create(
   persist(
     (set, get) => ({
-      lastSpin: 0,
+      status: userFlowEnum.INITIAL,
+      direction: 0, // -1 = Bear, 1 = Bull
       isClaimedTokens: 0,
       incrementWaves: () => set((state) => ({ waves: state.waves + 1 })),
+      setStatus: (status) => set(() => ({ status}))
     }),
     {
       name: 'persistence-storage', // name of item in the storage (must be unique)
