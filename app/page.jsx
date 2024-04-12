@@ -36,7 +36,7 @@ const getButtons = () => {
 
   switch (status) {
     case userFlowEnum.LUCKY:
-      return [{
+    /*  return [{
         action: 'tx',
         label: '🐻 Bearish',
         target: `${NEXT_PUBLIC_URL}/api/tx`,
@@ -47,7 +47,7 @@ const getButtons = () => {
         label: '🐂 Bullish',
         target: `${NEXT_PUBLIC_URL}/api/tx`,
         postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
-      }];
+      }];*/
     case userFlowEnum.INITIAL:
     default:
       return [{
@@ -61,8 +61,6 @@ export default function Page() {
 
   // Enable to reset
   usePersistentStore.getState().setStatus(userFlowEnum.INITIAL);
-  const status = usePersistentStore.getState().status;
-  console.log('Status: ', status);
 
   metadata.other = getFrameMetadata({
     buttons: [
@@ -72,7 +70,7 @@ export default function Page() {
       src: `${NEXT_PUBLIC_URL}/park-3.png`,
       aspectRatio: '1:1',
     },
-    postUrl: `${NEXT_PUBLIC_URL}/api/options-check`,
+    postUrl: `${NEXT_PUBLIC_URL}/api/options-check?direction=test`,
   });
 
   return (

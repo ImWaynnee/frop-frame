@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
 import usePersistentStore from '../../../store/usePersistentStore';
 
-async function getResponse(req: NextRequest): Promise<NextResponse> {
-  const body: FrameRequest = await req.json();
+async function getResponse(req) {
+  const body = await req.json();
+  console.log(req.nextUrl.searchParams.get("direction"));
   const { isValid, message } = 
   process.env.NODE_ENV === 'development' 
       ? { isValid: true, message: {} }
@@ -30,18 +31,31 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   // TODO :: Unlucky page, just spin again.
   return new NextResponse(
     getFrameHtmlResponse({
-      buttons: [
+      buttons: process.env.NODE_ENV === 'development' ? 
+      [
+        {
+          action: 'post',
+          label: '🐻 Bearish',
+          target: `${NEXT_PUBLIC_URL}/api/tx-success?direction=-1`,
+        },
+        {
+          action: 'post',
+          label: '🐂 Bullish',
+          target: `${NEXT_PUBLIC_URL}/api/tx-success?direction=1`,
+        }
+      ]
+      : [
         {
           action: 'tx',
           label: '🐻 Bearish',
           target: `${NEXT_PUBLIC_URL}/api/tx?direction=-1`,
-          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success?direction=-1`,
         },
         {
           action: 'tx',
           label: '🐂 Bullish',
           target: `${NEXT_PUBLIC_URL}/api/tx?direction=1`,
-          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
+          postUrl: `${NEXT_PUBLIC_URL}/api/tx-success?direction=1`,
         }
       ],
       image: {
@@ -51,7 +65,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   );
 }
 
-export async function POST(req: NextRequest): Promise<Response> {
+export async function POST(req) {
   return getResponse(req);
 }
 

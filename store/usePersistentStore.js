@@ -9,7 +9,8 @@ const usePersistentStore = create(
       status: userFlowEnum.INITIAL,
       direction: 0, // -1 = Bear, 1 = Bull
       isClaimedTokens: 0,
-      incrementWaves: () => set((state) => ({ waves: state.waves + 1 })),
+      timePurchased: new Date(),
+      setTimePurchased: (time) => set(() => ({timePurchased: time})),
       setStatus: (status) => set(() => ({ status}))
     }),
     {

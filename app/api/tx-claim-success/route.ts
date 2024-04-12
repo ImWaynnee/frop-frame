@@ -23,30 +23,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const todayDraw = getDayStart();
   const canSettle = isBefore(usePersistentStore.getState().timePurchased, todayDraw);
 console.log(canSettle);
-
   return new NextResponse(
     getFrameHtmlResponse({
-      buttons: 
-      process.env.NODE_ENV === 'development' ? 
-      [
-        canSettle || process.env.NODE_ENV === 'development' ? {
-          action: 'post',
-          label: 'Claim your winnings!',
-          target: `${NEXT_PUBLIC_URL}/api/tx-claim-success`,
-        } : 
+      buttons: [
         {
-          label: `Check back after ${convertDateForDisplay(todayDraw)}!`
-        }
-      ]
-      : [
-         canSettle ? {
-          action: 'tx',
-          label: 'Claim your winnings!',
-          target: `${NEXT_PUBLIC_URL}/api/tx-claim`,
-          postUrl: `${NEXT_PUBLIC_URL}/api/tx-claim-success`,
-        } :
-        {
-          label: `Check back after ${convertDateForDisplay(todayDraw)}!`,
+          label: `Well done! Try again tomorrow`
         }
       ]
       ,
