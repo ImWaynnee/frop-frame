@@ -8,6 +8,8 @@ import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   const body: FrameRequest = await req.json();
+  console.log(req);
+  alert('test');
   const { isValid } = 
   process.env.NODE_ENV === 'development' 
       ? { isValid: true }

@@ -34,13 +34,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         {
           action: 'tx',
           label: '🐻 Bearish',
-          target: `${NEXT_PUBLIC_URL}/api/tx`,
+          target: `${NEXT_PUBLIC_URL}/api/tx?direction=-1`,
           postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
         },
         {
           action: 'tx',
           label: '🐂 Bullish',
-          target: `${NEXT_PUBLIC_URL}/api/tx`,
+          target: `${NEXT_PUBLIC_URL}/api/tx?direction=1`,
           postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
         }
       ],
